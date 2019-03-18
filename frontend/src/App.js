@@ -1,25 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { NavLink, Switch, Route } from "react-router-dom";
+import "./App.css";
+
+import AllSongsContainer from "./components/AllSongsContainer";
+import Home from "./components/Home.js";
+import SongsByPop from "./components/SongsByPop.js";
+import SongsByGenre from "./components/SongsByGenre.js";
+import UserProfile from "./components/UserProfile.js";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <nav>
+          <NavLink to="/">Home</NavLink>
+          <br />
+          <NavLink to="/songs">All Songs</NavLink>
+          <br />
+          <NavLink to="/songs/byGenre">By Genre</NavLink>
+          <br />
+          <NavLink to="/songs/byPop">By Popularity</NavLink>
+          <br />
+          <NavLink to={`/users/1`}>Profile</NavLink>
+        </nav>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path={`/songs`} component={AllSongsContainer} />
+          <Route exact path={`/songs/byGenre`} component={SongsByGenre} />
+          <Route exact path={`/songs/byPop`} component={SongsByPop} />
+          <Route exact path={`/users/:id`} component={UserProfile} />
+        </Switch>
       </div>
     );
   }

@@ -3,14 +3,14 @@ const db = require("./connection");
 const faker = require("faker");
 
 let genres = [];
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < 5; i++) {
   let genre_name = faker.random.words();
   let str = `('${genre_name}')`;
   genres.push(str);
 }
 
 let songs = [];
-for (let i = 0; i < 16; i++) {
+for (let i = 0; i < 15; i++) {
   let title = faker.lorem.words();
   let genre_id = Math.floor(Math.random() * 5) + 1;
   let user_id = Math.floor(Math.random() * 10) + 1;
@@ -20,7 +20,7 @@ for (let i = 0; i < 16; i++) {
 }
 
 let favorites = [];
-for (let i = 0; i < 41; i++) {
+for (let i = 0; i < 40; i++) {
   let user_id = Math.floor(Math.random() * 10) + 1;
   let song_id = Math.floor(Math.random() * 15) + 1;
   let str = `(${user_id}, ${song_id})`;
@@ -28,7 +28,7 @@ for (let i = 0; i < 41; i++) {
 }
 
 let comments = [];
-for (let i = 0; i < 21; i++) {
+for (let i = 0; i < 20; i++) {
   let comment_body = faker.lorem.sentence();
   let user_id = Math.floor(Math.random() * 10) + 1;
   let song_id = Math.floor(Math.random() * 15) + 1;
