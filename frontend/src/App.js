@@ -5,7 +5,7 @@ import "./App.css";
 import AllSongsContainer from "./components/AllSongsContainer";
 import Home from "./components/Home.js";
 import SongsByPopContainer from "./components/SongsByPopContainer.js";
-import SongsByGenre from "./components/SongsByGenre.js";
+import SongsByGenreContainer from "./components/SongsByGenreContainer.js";
 import UserProfile from "./components/UserProfile.js";
 
 class App extends Component {
@@ -27,7 +27,11 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path={`/songs/byPop`} component={SongsByPopContainer} />
           <Route exact path={`/songs`} component={AllSongsContainer} />
-          <Route exact path={`/songs/byGenre`} component={SongsByGenre} />
+          <Route
+            exact
+            path={`/songs/byGenre`}
+            component={SongsByGenreContainer}
+          />
           <Route exact path={`/users/:id`} component={UserProfile} />
         </Switch>
       </div>

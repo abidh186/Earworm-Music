@@ -3,11 +3,21 @@ import SongListItemContainer from "./SongListItemContainer";
 
 class SongsByPop extends Component {
   componentDidMount = () => {
-    this.props.getSongsByPop();
+    this.props.getAllSongs();
     this.props.getAllGenres();
     this.props.getAllFavorites();
     this.props.getAllComments();
     this.props.getAllUsers();
+  };
+
+  getFavs = songId => {
+    let { favorites } = this.props;
+    let favs = favorites.filter(fav => {
+      return fav.song_id === songId;
+    });
+    if (favs.length) {
+      return favs.length;
+    }
   };
 
   displaySongList = () => {
@@ -17,14 +27,18 @@ class SongsByPop extends Component {
       return (
         <SongListItemContainer
           key={song.id}
+          genreId={song.genre_id}
           songId={song.id}
           img={song.img_url}
           title={song.title}
-          numberOfFavs={song.favorites}
+          numberOfFavs={this.getFavs(song.id)}
         />
       );
     });
-    return <div>{songList}</div>;
+    return songList.sort((a, b) => {
+      return b.props.numberOfFavs - a.props.numberOfFavs;
+    });
+    // return <div>{songList}</div>;
   };
 
   render() {
@@ -37,7 +51,7 @@ class SongsByPop extends Component {
     return (
       <div>
         <h1>Songs By Pop page</h1>
-        {this.displaySongList()}
+        <div>{this.displaySongList()}</div>
       </div>
     );
   }

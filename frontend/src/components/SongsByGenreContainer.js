@@ -1,12 +1,13 @@
 import { connect } from "react-redux";
 
-import SongListItem from "./SongListItem";
+import SongsByGenre from "./SongsByGenre.js";
 
 import {
-  // getAllSongs,
-  // getAllUsers,
+  getAllSongs,
+  getAllComments,
   getAllFavorites,
-  getAllComments
+  getAllUsers,
+  getAllGenres
 } from "../actions/allActions.js";
 
 const mapStateToProps = state => {
@@ -15,20 +16,22 @@ const mapStateToProps = state => {
     songs: state.songs,
     comments: state.comments,
     favorites: state.favorites,
+    genres: state.genres,
     currentUser: state.users[1]
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    // getAllUsers: () => dispatch(getAllUsers()),
-    // getAllSongs: () => dispatch(getAllSongs()),
+    getAllUsers: () => dispatch(getAllUsers()),
+    getAllComments: () => dispatch(getAllComments()),
     getAllFavorites: () => dispatch(getAllFavorites()),
-    getAllComments: () => dispatch(getAllComments())
+    getAllGenres: () => dispatch(getAllGenres()),
+    getAllSongs: () => dispatch(getAllSongs())
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SongListItem);
+)(SongsByGenre);

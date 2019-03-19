@@ -12,19 +12,19 @@ const getAllSongs = (req, res, next) => {
     .catch(err => next(err));
 };
 
-const allSongByPop = (req, res, next) => {
-  db.any(
-    "SELECT songs.id, title, img_url, genre_id, COUNT(favorites.song_id) AS favorites FROM songs LEFT JOIN favorites ON songs.id = favorites.song_id GROUP BY songs.id, title, img_url, genre_id ORDER BY favorites DESC"
-  )
-    .then(songs => {
-      res.status(200).json({
-        status: "success",
-        songs,
-        message: "all songs with favs"
-      });
-    })
-    .catch(err => next(err));
-};
+// const allSongsByPop = (req, res, next) => {
+//   db.any(
+//     "SELECT songs.id, title, img_url, genre_id, COUNT(favorites.song_id) AS favorites FROM songs LEFT JOIN favorites ON songs.id = favorites.song_id GROUP BY songs.id, title, img_url, genre_id ORDER BY favorites DESC"
+//   )
+//     .then(songs => {
+//       res.status(200).json({
+//         status: "success",
+//         songs,
+//         message: "all songs with favs"
+//       });
+//     })
+//     .catch(err => next(err));
+// };
 
 ////songs with number of favorites
 /*SELECT songs.id, title, img_url, genre_id, COUNT(favorites.song_id) AS favorites
@@ -42,4 +42,4 @@ ORDER BY id*/
 ///////get number of favorites by song
 // SELECT COUNT(id) FROM favorites WHERE song_id = 7
 
-module.exports = { getAllSongs, allSongByPop };
+module.exports = { getAllSongs };

@@ -2,6 +2,12 @@ import React from "react";
 import axios from "axios";
 
 class SongListItem extends React.Component {
+  // componentDidMount = () => {
+  //   this.props.getAllFavorites();
+  //   this.props.getAllComments();
+  //   this.props.getSongsByPop();
+  // };
+
   state = {
     commentBody: ""
   };
@@ -23,7 +29,6 @@ class SongListItem extends React.Component {
       })
       .then(() => {
         this.props.getAllComments();
-        this.props.getSongsByPop();
       });
 
     await this.setState({
@@ -48,7 +53,8 @@ class SongListItem extends React.Component {
       })
       .then(() => {
         this.props.getAllFavorites();
-        this.props.getSongsByPop();
+        // this.props.getSongsByPop();
+        // this.forceUpdate();
       });
   };
 
@@ -61,7 +67,8 @@ class SongListItem extends React.Component {
     // debugger;
     axios.delete(`/favorites/${favItem["0"].id}`).then(() => {
       this.props.getAllFavorites();
-      this.props.getSongsByPop();
+      // this.props.getSongsByPop();
+      // this.forceUpdate();
     });
   };
 

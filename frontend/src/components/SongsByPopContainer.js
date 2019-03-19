@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import SongsByPop from "./SongsByPop";
 
 import {
-  getSongsByPop,
+  getAllSongs,
   getAllComments,
   getAllFavorites,
   getAllUsers,
@@ -24,7 +24,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAllUsers: () => dispatch(getAllUsers()),
-    getSongsByPop: () => dispatch(getSongsByPop()),
+    getAllSongs: () => dispatch(getAllSongs()),
     getAllComments: () => dispatch(getAllComments()),
     getAllFavorites: () => dispatch(getAllFavorites()),
     getAllGenres: () => dispatch(getAllGenres())

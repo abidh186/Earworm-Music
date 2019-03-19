@@ -57,6 +57,7 @@ class AllSongs extends Component {
       return (
         <SongListItemContainer
           key={song.id}
+          genreId={song.genre_id}
           songId={song.id}
           img={song.img_url}
           title={song.title}
