@@ -4,7 +4,6 @@ import "../styles/allSongs.css";
 
 class AllSongs extends Component {
   state = {
-    songs: this.props.songs,
     searchInput: "",
     clicked: false
   };
@@ -18,8 +17,7 @@ class AllSongs extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.setState({
-      clicked: true,
-      searchInput: ""
+      clicked: true
     });
   };
 
@@ -40,28 +38,28 @@ class AllSongs extends Component {
     }
   };
 
-  filterSongs = songArr => {
-    let { searchInput } = this.state;
-    return songArr.filter(song => {
-      return song.title.toLowerCase().includes(searchInput.toLowerCase());
-    });
-  };
   // filterSongs = songArr => {
-  //   let { searchInput, clicked } = this.state;
-  //   if (clicked === false || searchInput === "") {
-  //     return songArr;
-  //   } else {
-  //     return songArr.filter(song => {
-  //       return song.title.toLowerCase().includes(searchInput.toLowerCase());
-  //     });
-  //   }
+  //   let { searchInput } = this.state;
+  //   return songArr.filter(song => {
+  //     return song.title.toLowerCase().includes(searchInput.toLowerCase());
+  //   });
   // };
+  filterSongs = songArr => {
+    let { searchInput, clicked } = this.state;
+    if (clicked === false || searchInput === "") {
+      return songArr;
+    } else {
+      return songArr.filter(song => {
+        return song.title.toLowerCase().includes(searchInput.toLowerCase());
+      });
+    }
+  };
 
   displaySongList = () => {
-    let { songs } = this.state;
-    // let filteredSongs = this.filterSongs(songs);
+    let { songs } = this.props;
+    let filteredSongs = this.filterSongs(songs);
     // debugger;
-    let songList = songs.map(song => {
+    let songList = filteredSongs.map(song => {
       return (
         <SongListItemContainer
           key={song.id}
@@ -80,7 +78,7 @@ class AllSongs extends Component {
     if (!this.props.currentUser) return null;
     let { comments, users, songs } = this.props;
     if (!comments.length) return null;
-    if (!this.state.songs.length) return null;
+    if (!songs.length) return null;
     if (!Object.values(users).length) return null;
     return (
       <div className="App">
