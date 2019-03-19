@@ -3,6 +3,26 @@ import SongListItemContainer from "./SongListItemContainer";
 import "../styles/allSongs.css";
 
 class AllSongs extends Component {
+  state = {
+    songs: this.props.songs,
+    searchInput: "",
+    clicked: false
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.setState({
+      clicked: true,
+      searchInput: ""
+    });
+  };
+
   componentDidMount = () => {
     this.props.getAllSongs();
     this.props.getAllFavorites();
@@ -20,8 +40,28 @@ class AllSongs extends Component {
     }
   };
 
+  filterSongs = songArr => {
+    let { searchInput } = this.state;
+    return songArr.filter(song => {
+      return song.title.toLowerCase().includes(searchInput.toLowerCase());
+    });
+  };
+  // filterSongs = songArr => {
+  //   let { searchInput, clicked } = this.state;
+  //   if (clicked === false || searchInput === "") {
+  //     return songArr;
+  //   } else {
+  //     return songArr.filter(song => {
+  //       return song.title.toLowerCase().includes(searchInput.toLowerCase());
+  //     });
+  //   }
+  // };
+
   displaySongList = () => {
-    let songList = this.props.songs.map(song => {
+    let { songs } = this.state;
+    // let filteredSongs = this.filterSongs(songs);
+    // debugger;
+    let songList = songs.map(song => {
       return (
         <SongListItemContainer
           key={song.id}
@@ -36,12 +76,26 @@ class AllSongs extends Component {
   };
 
   render() {
+    // console.log("here: ", this.state.searchInput);
     if (!this.props.currentUser) return null;
-    let { comments, songs, users } = this.props;
+    let { comments, users, songs } = this.props;
     if (!comments.length) return null;
-    if (!songs.length) return null;
+    if (!this.state.songs.length) return null;
     if (!Object.values(users).length) return null;
-    return <div className="App">{this.displaySongList()}</div>;
+    return (
+      <div className="App">
+        <form onSubmit={this.handleSubmit}>
+          <input
+            onChange={this.handleChange}
+            name="searchInput"
+            type="text"
+            value={this.state.searchInput}
+          />
+          <input type="submit" value="Search By Title" />
+        </form>
+        {this.displaySongList()}
+      </div>
+    );
   }
 }
 

@@ -1,15 +1,7 @@
 import React from "react";
 import axios from "axios";
-// import "../styles/allSongs.css";
 
 class SongListItem extends React.Component {
-  // componentDidMount = () => {
-  //   this.props.getAllSongs();
-  //   this.props.getAllFavorites();
-  //   this.props.getAllComments();
-  //   this.props.getAllUsers();
-  // };
-
   state = {
     commentBody: ""
   };
