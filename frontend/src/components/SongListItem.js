@@ -23,6 +23,7 @@ class SongListItem extends React.Component {
       })
       .then(() => {
         this.props.getAllComments();
+        this.props.getSongsByPop();
       });
 
     await this.setState({
@@ -47,6 +48,7 @@ class SongListItem extends React.Component {
       })
       .then(() => {
         this.props.getAllFavorites();
+        this.props.getSongsByPop();
       });
   };
 
@@ -59,6 +61,7 @@ class SongListItem extends React.Component {
     // debugger;
     axios.delete(`/favorites/${favItem["0"].id}`).then(() => {
       this.props.getAllFavorites();
+      this.props.getSongsByPop();
     });
   };
 
@@ -91,7 +94,7 @@ class SongListItem extends React.Component {
         ) : (
           <button onClick={this.favorite}>Favorite</button>
         )}
-        <h3>song title: {title}</h3>
+        <h3>{title}</h3>
         {numberOfFavs ? <p>{numberOfFavs} favorited</p> : null}
         <div>{this.getSongComments(songId)}</div>
         <form onSubmit={this.handleSubmit}>

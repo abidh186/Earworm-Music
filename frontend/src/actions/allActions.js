@@ -62,6 +62,17 @@ export const getAllSongs = () => dispatch => {
     });
 };
 
+export const getSongsByPop = () => dispatch => {
+  return dataApi
+    .getSongsByPop()
+    .then(res => {
+      return dispatch(receivedSongs(res.data.songs));
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 export const getAllFavorites = () => dispatch => {
   return dataApi
     .getAllFavorites()

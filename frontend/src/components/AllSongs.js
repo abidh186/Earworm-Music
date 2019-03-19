@@ -38,12 +38,6 @@ class AllSongs extends Component {
     }
   };
 
-  // filterSongs = songArr => {
-  //   let { searchInput } = this.state;
-  //   return songArr.filter(song => {
-  //     return song.title.toLowerCase().includes(searchInput.toLowerCase());
-  //   });
-  // };
   filterSongs = songArr => {
     let { searchInput, clicked } = this.state;
     if (clicked === false || searchInput === "") {
@@ -70,6 +64,7 @@ class AllSongs extends Component {
         />
       );
     });
+    // debugger;
     return <div>{songList}</div>;
   };
 
