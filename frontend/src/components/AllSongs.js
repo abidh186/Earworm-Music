@@ -1,10 +1,8 @@
 import React, { Component } from "react";
+import SongListItemContainer from "./SongListItemContainer";
+import "../styles/allSongs.css";
 
 class AllSongs extends Component {
-  state = {
-    input: ""
-  };
-
   componentDidMount = () => {
     this.props.getAllSongs();
     this.props.getAllFavorites();
@@ -12,53 +10,38 @@ class AllSongs extends Component {
     this.props.getAllUsers();
   };
 
-  getLikes = songId => {
+  getFavs = songId => {
     let { favorites } = this.props;
-    return favorites.filter(like => {
-      return like.song_id === songId;
-    }).length;
+    let favs = favorites.filter(fav => {
+      return fav.song_id === songId;
+    });
+    if (favs.length) {
+      return favs.length;
+    }
   };
 
-  commentsForOneSong = songId => {
-    let { users } = this.props;
-    let commentList = this.props.comments.filter(comment => {
-      return comment.song_id === songId;
-    });
-    let filtered = commentList.map(comment => {
-      return (
-        <p key={comment.id}>
-          {comment.comment_body} comment author:{" "}
-          {users[comment.user_id].username}
-        </p>
-      );
-    });
-    return <div>{filtered}</div>;
-  };
-
-  displaySongsWithCommentsAndLikes = () => {
+  displaySongList = () => {
     let songList = this.props.songs.map(song => {
       return (
-        <div key={song.id}>
-          <h3>song title: {song.title}</h3>
-          <p>comments: </p>
-          {this.commentsForOneSong(song.id)}
-          <p>favorites</p>
-          {this.getLikes(song.id)}
-        </div>
+        <SongListItemContainer
+          key={song.id}
+          songId={song.id}
+          img={song.img_url}
+          title={song.title}
+          numberOfFavs={this.getFavs(song.id)}
+        />
       );
     });
     return <div>{songList}</div>;
   };
 
   render() {
-    console.log("here: ", this.props.users);
-    // debugger;
+    if (!this.props.currentUser) return null;
     let { comments, songs, users } = this.props;
-    // debugger;
     if (!comments.length) return null;
     if (!songs.length) return null;
     if (!Object.values(users).length) return null;
-    return <div className="App">{this.displaySongsWithCommentsAndLikes()}</div>;
+    return <div className="App">{this.displaySongList()}</div>;
   }
 }
 
