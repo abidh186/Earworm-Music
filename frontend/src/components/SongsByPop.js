@@ -1,3 +1,7 @@
+// I notice we're make a lot of the same calls over and over.
+// We could have moved these calls to app to only happen once.
+//
+
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
 

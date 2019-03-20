@@ -1,3 +1,8 @@
+// Songs should filter only submit, not onChange
+// All other required functionality is working well.
+// CSS needs some attention please.
+
+
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
 import "../styles/allSongs.css";
