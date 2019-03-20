@@ -1,3 +1,11 @@
+//make the navbar it's own component.
+// overall you're doing an excellent job.
+// You're right where I think you should be. 
+// Over the next couple days I want you to style
+// and to starting thinking about reusable code and
+// how you could refactor things a touch.
+// Great job and keep it up!
+
 import React, { Component } from "react";
 import { NavLink, Switch, Route } from "react-router-dom";
 import "./App.css";

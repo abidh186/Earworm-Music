@@ -1,3 +1,10 @@
+// Went to visit this page and it broke on me... :-(.
+// did work on the refresh though.
+// this page should also have a submit button and
+// should wait till it's clicked before doing the filtering. 
+//Think about organizing your files a bit more. components
+// is starting to get a bit out of hand.
+
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
 

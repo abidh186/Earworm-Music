@@ -1,3 +1,9 @@
+//Some of these components like this one are very long.
+// You could refactor (not required ). Be aware of this
+//type of stuff because you always want to write clean
+// code for coding challenges (best you can).
+
+
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
 import axios from "axios";
