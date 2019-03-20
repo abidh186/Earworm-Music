@@ -12,34 +12,25 @@ const getAllSongs = (req, res, next) => {
     .catch(err => next(err));
 };
 
-// const allSongsByPop = (req, res, next) => {
-//   db.any(
-//     "SELECT songs.id, title, img_url, genre_id, COUNT(favorites.song_id) AS favorites FROM songs LEFT JOIN favorites ON songs.id = favorites.song_id GROUP BY songs.id, title, img_url, genre_id ORDER BY favorites DESC"
-//   )
-//     .then(songs => {
-//       res.status(200).json({
-//         status: "success",
-//         songs,
-//         message: "all songs with favs"
-//       });
-//     })
-//     .catch(err => next(err));
-// };
+const postSong = (req, res, next) => {
+  let user_id = parseInt(req.body.user_id);
+  let genre_id = parseInt(req.body.genre_id);
+  db.none(
+    "INSERT INTO songs(title, genre_id, user_id, img_url) VALUES(${title}, ${genre_id}, ${user_id}, ${img_url})",
+    {
+      title: req.body.title,
+      genre_id: genre_id,
+      user_id: user_id,
+      img_url: req.body.img_url
+    }
+  )
+    .then(() => {
+      res.status(200).json({
+        status: "success",
+        message: "added song"
+      });
+    })
+    .catch(err => next(err));
+};
 
-////songs with number of favorites
-/*SELECT songs.id, title, img_url, genre_id, COUNT(favorites.song_id) AS favorites
- FROM songs
- LEFT JOIN favorites ON songs.id = favorites.song_id
- GROUP BY songs.id, title, img_url, genre_id
-ORDER BY id*/
-
-/////// songs with Comments
-// SELECT songs.id, title, img_url, genre_id, ARRAY_AGG(comment_body) AS comments
-// FROM songs
-// LEFT JOIN comments ON songs.id=comments.song_id
-// GROUP BY songs.id, title, img_url, genre_id
-
-///////get number of favorites by song
-// SELECT COUNT(id) FROM favorites WHERE song_id = 7
-
-module.exports = { getAllSongs };
+module.exports = { getAllSongs, postSong };

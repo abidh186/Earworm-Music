@@ -6,12 +6,14 @@ import {
   getAllSongs,
   getAllComments,
   getAllFavorites,
-  getAllUsers
+  getAllUsers,
+  getAllGenres
 } from "../actions/allActions.js";
 
 const mapStateToProps = state => {
   return {
     users: state.users,
+    genres: state.genres,
     songs: state.songs,
     comments: state.comments,
     favorites: state.favorites,
@@ -24,7 +26,8 @@ const mapDispatchToProps = dispatch => {
     getAllUsers: () => dispatch(getAllUsers()),
     getAllSongs: () => dispatch(getAllSongs()),
     getAllComments: () => dispatch(getAllComments()),
-    getAllFavorites: () => dispatch(getAllFavorites())
+    getAllFavorites: () => dispatch(getAllFavorites()),
+    getAllGenres: () => dispatch(getAllGenres())
   };
 };
 

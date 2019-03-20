@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
+import axios from "axios";
 import "../styles/profile.css";
 
 class SongsByPop extends Component {
@@ -8,10 +9,14 @@ class SongsByPop extends Component {
     this.props.getAllSongs();
     this.props.getAllFavorites();
     this.props.getAllComments();
+    this.props.getAllGenres();
   };
 
   state = {
-    posted: true
+    posted: true,
+    title: "",
+    genre: "",
+    img_url: ""
   };
 
   clickPosted = () => {
@@ -86,13 +91,52 @@ class SongsByPop extends Component {
     });
   };
 
+  listGenres = () => {
+    let { genres } = this.props;
+    let genreList = genres.map(genre => {
+      return <option key={genre.id}>{genre.genre_name}</option>;
+    });
+    return genreList;
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleSubmit = async event => {
+    event.preventDefault();
+    let { currentUser, genres } = this.props;
+    let { title, genre, img_url } = this.state;
+
+    let filteredItem = genres.filter(genreItem => {
+      return genreItem.genre_name === genre;
+    });
+    await axios
+      .post("/songs", {
+        title: this.state.title,
+        genre_id: filteredItem["0"].id,
+        user_id: currentUser.id,
+        img_url: img_url
+      })
+      .then(() => {
+        this.props.getAllSongs();
+      });
+
+    await this.setState({
+      title: "",
+      genre: "",
+      img_url: ""
+    });
+  };
+
   render() {
-    let userId = this.props.match.params.id;
+    let userId = parseInt(this.props.match.params.id);
     let { posted } = this.state;
-    let { users, songs, favorites } = this.props;
+    let { users, songs, favorites, currentUser, genres } = this.props;
     if (!Object.values(users).length) return null;
-    if (!songs.length || !favorites.length) return null;
-    // debugger;
+    if (!songs.length || !favorites.length || !genres.length) return null;
     return (
       <div>
         <button
@@ -111,6 +155,31 @@ class SongsByPop extends Component {
         {posted ? (
           <div>
             <h4>Posted Content</h4>
+            {userId === currentUser.id ? (
+              <div>
+                <form onSubmit={this.handleSubmit}>
+                  <input
+                    required
+                    onChange={this.handleChange}
+                    name="title"
+                    placeholder="Song Title"
+                    type="text"
+                  />
+                  <input
+                    required
+                    onChange={this.handleChange}
+                    name="img_url"
+                    placeholder="Image URL"
+                    type="text"
+                  />
+                  <label>Pick Genre-></label>
+                  <select name="genre" onChange={this.handleChange}>
+                    {this.listGenres()}
+                  </select>
+                  <input type="submit" value="Add Song" />
+                </form>
+              </div>
+            ) : null}
             {this.displayPosted()}
           </div>
         ) : (

@@ -71,20 +71,14 @@ class AllSongs extends Component {
 
   render() {
     // console.log("here: ", this.state.searchInput);
-    if (!this.props.currentUser) return null;
-    let { comments, users, songs } = this.props;
-    if (!comments.length) return null;
-    if (!songs.length) return null;
+    // if (!this.props.currentUser) return null;
+    let { comments, users, songs, currentUser } = this.props;
+    if (!comments.length || !songs.length || !currentUser) return null;
     if (!Object.values(users).length) return null;
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
-          <input
-            onChange={this.handleChange}
-            name="searchInput"
-            type="text"
-            value={this.state.searchInput}
-          />
+          <input onChange={this.handleChange} name="searchInput" type="text" />
           <input type="submit" value="Search By Title" />
         </form>
         {this.displaySongList()}

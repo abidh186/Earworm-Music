@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllSongs, allSongByPop } = require("../db/queries/songQueries.js");
+const { getAllSongs, postSong } = require("../db/queries/songQueries.js");
 
 router.get("/", getAllSongs);
-router.get("/favs", allSongByPop);
+router.post("/", postSong);
 
 module.exports = router;
