@@ -111,12 +111,11 @@ class SongsByPop extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let { currentUser, genres } = this.props;
-    let { title, genre, img_url, err_warning } = this.state;
+    let { title, genre, img_url } = this.state;
 
     let filteredItem = genres.filter(genreItem => {
       return genreItem.genre_name === genre;
     });
-    // debugger;
     axios
       .post("/songs", {
         title: title,
@@ -169,7 +168,6 @@ class SongsByPop extends Component {
         <h2>{users[userId].username}</h2>
         {posted ? (
           <div>
-            <h4>Posted Content</h4>
             {userId === currentUser.id ? (
               <div>
                 {err_warning ? (
@@ -209,10 +207,7 @@ class SongsByPop extends Component {
             {this.displayPosted()}
           </div>
         ) : (
-          <div>
-            <h4>Fav Content</h4>
-            {this.displayFavorited()}
-          </div>
+          <div>{this.displayFavorited()}</div>
         )}
       </div>
     );

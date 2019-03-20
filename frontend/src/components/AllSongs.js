@@ -5,20 +5,21 @@ import "../styles/allSongs.css";
 class AllSongs extends Component {
   state = {
     searchInput: "",
-    clicked: false
+    clicked: false,
+    showing: false
   };
 
   handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    this.setState({
-      clicked: true
-    });
+    if (this.state.clicked) {
+      this.setState({
+        [event.target.name]: event.target.value,
+        clicked: false
+      });
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value
+      });
+    }
   };
 
   componentDidMount = () => {
@@ -40,6 +41,13 @@ class AllSongs extends Component {
     }
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    this.setState({
+      clicked: true
+    });
+  };
+
   filterSongs = songArr => {
     let { searchInput, clicked } = this.state;
     if (clicked === false || searchInput === "") {
@@ -51,11 +59,9 @@ class AllSongs extends Component {
     }
   };
 
-  displaySongList = () => {
-    let { songs } = this.props;
-    let filteredSongs = this.filterSongs(songs);
-    // debugger;
-    let songList = filteredSongs.map(song => {
+  displaySongList = songs => {
+    if (songs.length === 0) return <p>Your search didn't return anything</p>;
+    let songList = songs.map(song => {
       return (
         <SongListItemContainer
           key={song.id}
@@ -67,23 +73,28 @@ class AllSongs extends Component {
         />
       );
     });
-    // debugger;
     return <div>{songList}</div>;
   };
 
   render() {
-    // console.log("here: ", this.state.searchInput);
-    // if (!this.props.currentUser) return null;
     let { comments, users, songs, currentUser } = this.props;
+    let { clicked } = this.state;
     if (!comments.length || !songs.length || !currentUser) return null;
     if (!Object.values(users).length) return null;
+    let filtered = this.filterSongs(songs);
     return (
       <div className="App">
+        {clicked ? <p>Showing searched</p> : <p>showing all</p>}
         <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} name="searchInput" type="text" />
+          <input
+            required
+            onChange={this.handleChange}
+            name="searchInput"
+            type="text"
+          />
           <input type="submit" value="Search By Title" />
         </form>
-        {this.displaySongList()}
+        {clicked ? this.displaySongList(filtered) : this.displaySongList(songs)}
       </div>
     );
   }

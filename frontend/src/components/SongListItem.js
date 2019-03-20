@@ -1,13 +1,8 @@
 import React from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 class SongListItem extends React.Component {
-  // componentDidMount = () => {
-  //   this.props.getAllFavorites();
-  //   this.props.getAllComments();
-  //   this.props.getSongsByPop();
-  // };
-
   state = {
     commentBody: ""
   };
@@ -53,8 +48,6 @@ class SongListItem extends React.Component {
       })
       .then(() => {
         this.props.getAllFavorites();
-        // this.props.getSongsByPop();
-        // this.forceUpdate();
       });
   };
 
@@ -64,11 +57,8 @@ class SongListItem extends React.Component {
     let favItem = favorites.filter(fav => {
       return fav.user_id === currentUser.id && fav.song_id === songId;
     });
-    // debugger;
     axios.delete(`/favorites/${favItem["0"].id}`).then(() => {
       this.props.getAllFavorites();
-      // this.props.getSongsByPop();
-      // this.forceUpdate();
     });
   };
 
@@ -81,7 +71,9 @@ class SongListItem extends React.Component {
       return (
         <p key={comment.id}>
           {comment.comment_body} comment author:{" "}
-          {users[comment.user_id].username}
+          <NavLink className="abc" exact to={`/users/${comment.user_id}`}>
+            {users[comment.user_id].username}
+          </NavLink>
         </p>
       );
     });
@@ -92,7 +84,6 @@ class SongListItem extends React.Component {
     let { img, title, numberOfFavs, songId } = this.props;
     if (!this.props.comments.length) return null;
     let isFav = this.isFavOfCurrentUser(songId);
-    console.log("isFav: ", isFav);
     return (
       <div className="song-list-item">
         <img src={img} alt="" />
