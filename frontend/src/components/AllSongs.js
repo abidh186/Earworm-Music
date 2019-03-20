@@ -35,6 +35,8 @@ class AllSongs extends Component {
     });
     if (favs.length) {
       return favs.length;
+    } else {
+      return 0;
     }
   };
 
