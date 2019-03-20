@@ -69,15 +69,17 @@ class SongListItem extends React.Component {
     });
     let filtered = commentList.map(comment => {
       return (
-        <p key={comment.id}>
-          {comment.comment_body} comment author:{" "}
+        <p className="comment-text" key={comment.id}>
+          {comment.comment_body} <span className="comment-by">by</span>{" "}
           <NavLink className="abc" exact to={`/users/${comment.user_id}`}>
-            {users[comment.user_id].username}
+            <span className="username-link">
+              {users[comment.user_id].username}
+            </span>
           </NavLink>
         </p>
       );
     });
-    return <div>{filtered}</div>;
+    return filtered;
   };
 
   render() {
@@ -88,22 +90,29 @@ class SongListItem extends React.Component {
       <div className="song-list-item">
         <img src={img} alt="" />
         {isFav ? (
-          <button onClick={this.unfavorite}>Unfavorite</button>
+          <button className="favorite-button" onClick={this.unfavorite}>
+            Unfavorite
+          </button>
         ) : (
-          <button onClick={this.favorite}>Favorite</button>
+          <button className="unfavorite-button" onClick={this.favorite}>
+            Favorite
+          </button>
         )}
-        <h3>{title}</h3>
-        {numberOfFavs ? <p>{numberOfFavs} favorited</p> : null}
-        <div>{this.getSongComments(songId)}</div>
+        <h4 className="song-title">{title}</h4>
+        {numberOfFavs ? (
+          <p className="favorite-count">{numberOfFavs} favorited</p>
+        ) : null}
+        <div className="comments-container">{this.getSongComments(songId)}</div>
         <form onSubmit={this.handleSubmit}>
           <input
+            className="comment-input"
             onChange={this.handleChange}
             type="text"
             required
             value={this.state.commentBody}
             name="commentBody"
           />
-          <input type="submit" value="add comment" />
+          <input className="comment-button" type="submit" value="add comment" />
         </form>
       </div>
     );

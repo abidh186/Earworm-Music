@@ -30,7 +30,6 @@ class SongsByGenre extends Component {
     let { songs, genres } = this.props;
     let { chosenGenre } = this.state;
     let songList = songs.map(song => {
-      // debugger;
       return (
         <SongListItemContainer
           key={song.id}
@@ -66,20 +65,18 @@ class SongsByGenre extends Component {
   };
 
   render() {
-    // debugger;
     if (!this.props.currentUser) return null;
-    let { comments, users, songs } = this.props;
-    if (!comments.length) return null;
-    if (!songs.length) return null;
+    let { comments, users, songs, genres } = this.props;
+    if (!comments.length || !songs.length || !genres.length) return null;
     if (!Object.values(users).length) return null;
     return (
-      <div>
+      <div className="by-genre-container">
         <h1>Songs By Genre</h1>
         <select onChange={this.changeHandler}>
           <option> </option>
           {this.listGenres()}
         </select>
-        <div>{this.displaySongList()}</div>
+        <div className="song-list">{this.displaySongList()}</div>
       </div>
     );
   }

@@ -1,0 +1,38 @@
+.entire-app {
+  text-align: center;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 20px;
+}
+
+.navbar {
+  margin: 0 20px;
+  height: 75px;
+  display: flex;
+}
+
+.navbar > a {
+  padding: 15px;
+  text-decoration: none;
+  margin: auto;
+  font-family: Noto Sans JP;
+  font-weight: 700;
+  color: #621389;
+}
+
+.logo {
+  font-family: Fredericka the Great;
+  font-weight: normal;
+  color: #00f281;
+}
+
+/* Primary color: A nice dark violet. Hex code #621389.
+Secondary color: Light gray, but not white. Hex code #d1d1d1.
+Highlight color: Seafoam! Hex code #00f281.
+Text colors: Utilize #d1d1d1, black, or white, as needed for visibility. */
+/* <link href="https://fonts.googleapis.com/css?
+family=Alegreya|Crimson+Text:400,600|Fredericka+the+Great|Noto+Sans+JP|Open+Sans+Condensed:300,700" rel="stylesheet"> */

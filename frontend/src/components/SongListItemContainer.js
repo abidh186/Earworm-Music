@@ -2,12 +2,7 @@ import { connect } from "react-redux";
 
 import SongListItem from "./SongListItem";
 
-import {
-  // getAllSongs,
-  // getAllUsers,
-  getAllFavorites,
-  getAllComments
-} from "../actions/allActions.js";
+import { getAllFavorites, getAllComments } from "../actions/allActions.js";
 
 const mapStateToProps = state => {
   return {
@@ -21,8 +16,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // getAllUsers: () => dispatch(getAllUsers()),
-    // getAllSongs: () => dispatch(getAllSongs()),
     getAllFavorites: () => dispatch(getAllFavorites()),
     getAllComments: () => dispatch(getAllComments())
   };

@@ -25,7 +25,6 @@ class SongsByPop extends Component {
   displaySongList = () => {
     let { songs } = this.props;
     let songList = songs.map(song => {
-      // debugger;
       return (
         <SongListItemContainer
           key={song.id}
@@ -40,20 +39,17 @@ class SongsByPop extends Component {
     return songList.sort((a, b) => {
       return b.props.numberOfFavs - a.props.numberOfFavs;
     });
-    // return <div>{songList}</div>;
   };
 
   render() {
-    // debugger;
     if (!this.props.currentUser) return null;
-    let { comments, users, songs } = this.props;
-    if (!comments.length) return null;
-    if (!songs.length) return null;
+    let { comments, users, songs, favorites } = this.props;
+    if (!comments.length || !songs.length || !favorites.length) return null;
     if (!Object.values(users).length) return null;
     return (
-      <div>
+      <div className="by-pop-container">
         <h1>Songs By Pop page</h1>
-        <div>{this.displaySongList()}</div>
+        <div className="song-list">{this.displaySongList()}</div>
       </div>
     );
   }

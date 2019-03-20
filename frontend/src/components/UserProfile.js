@@ -152,7 +152,7 @@ class SongsByPop extends Component {
     if (!Object.values(users).length) return null;
     if (!songs.length || !favorites.length || !genres.length) return null;
     return (
-      <div>
+      <div className="user-profile-container">
         <button
           className={posted ? "selected" : "unselected"}
           onClick={this.clickPosted}
@@ -165,13 +165,15 @@ class SongsByPop extends Component {
         >
           Favorited
         </button>
-        <h2>{users[userId].username}</h2>
+        <h2 className="username">{users[userId].username}</h2>
         {posted ? (
-          <div>
+          <>
             {userId === currentUser.id ? (
-              <div>
+              <div className="post-song-form">
                 {err_warning ? (
-                  <p>Please make sure it's a unique title</p>
+                  <p className="post-song-err">
+                    Please make sure it's a unique title
+                  </p>
                 ) : null}
                 <form onSubmit={this.handleSubmit}>
                   <input
@@ -181,6 +183,7 @@ class SongsByPop extends Component {
                     placeholder="Song Title"
                     type="text"
                     value={title}
+                    className="song-title-input"
                   />
                   <input
                     required
@@ -189,6 +192,7 @@ class SongsByPop extends Component {
                     placeholder="Image URL"
                     type="text"
                     value={img_url}
+                    className="song-url-input"
                   />
                   <label>Pick Genre-></label>
                   <select
@@ -200,14 +204,18 @@ class SongsByPop extends Component {
                     <option>{""}</option>
                     {this.listGenres()}
                   </select>
-                  <input type="submit" value="Add Song" />
+                  <input
+                    className="post-song-button"
+                    type="submit"
+                    value="Add Song"
+                  />
                 </form>
               </div>
             ) : null}
-            {this.displayPosted()}
-          </div>
+            <div className="song-list">{this.displayPosted()}</div>
+          </>
         ) : (
-          <div>{this.displayFavorited()}</div>
+          <div className="song-list">{this.displayFavorited()}</div>
         )}
       </div>
     );

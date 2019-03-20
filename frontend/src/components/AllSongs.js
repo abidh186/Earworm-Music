@@ -73,26 +73,36 @@ class AllSongs extends Component {
         />
       );
     });
-    return <div>{songList}</div>;
+    return <div className="song-list">{songList}</div>;
   };
 
   render() {
-    let { comments, users, songs, currentUser } = this.props;
+    let { comments, users, songs, currentUser, favorites } = this.props;
     let { clicked } = this.state;
-    if (!comments.length || !songs.length || !currentUser) return null;
+    if (!comments.length || !songs.length || !currentUser || !favorites.length)
+      return null;
     if (!Object.values(users).length) return null;
     let filtered = this.filterSongs(songs);
     return (
-      <div className="App">
-        {clicked ? <p>Showing searched</p> : <p>showing all</p>}
+      <div className="all-songs-container">
+        {clicked ? (
+          <p className="showing-searched">Showing searched</p>
+        ) : (
+          <p className="showing-all">showing all</p>
+        )}
         <form onSubmit={this.handleSubmit}>
           <input
             required
             onChange={this.handleChange}
             name="searchInput"
             type="text"
+            className="title-search-input"
           />
-          <input type="submit" value="Search By Title" />
+          <input
+            className="title-search-button"
+            type="submit"
+            value="Search By Title"
+          />
         </form>
         {clicked ? this.displaySongList(filtered) : this.displaySongList(songs)}
       </div>
