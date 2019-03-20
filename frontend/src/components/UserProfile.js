@@ -35,10 +35,21 @@ class SongsByPop extends Component {
     }
   };
 
-  displayPosted = () => {
-    let { songs } = this.props;
+  displayFavorited = () => {
+    let { songs, favorites } = this.props;
     let userId = parseInt(this.props.match.params.id);
-    let songList = songs.map(song => {
+
+    let favs = favorites
+      .filter(fav => {
+        return fav.user_id === userId;
+      })
+      .map(favItem => favItem.song_id);
+
+    let favSongsList = songs.filter(favSong => {
+      return favs.includes(favSong.id);
+    });
+
+    let songList = favSongsList.map(song => {
       return (
         <SongListItemContainer
           key={song.id}
@@ -51,12 +62,10 @@ class SongsByPop extends Component {
         />
       );
     });
-    return songList.filter(songItem => {
-      return songItem.props.user_id === userId;
-    });
+    return songList;
   };
 
-  displayFavorite = () => {
+  displayPosted = () => {
     let { songs } = this.props;
     let userId = parseInt(this.props.match.params.id);
     let songList = songs.map(song => {
@@ -105,7 +114,10 @@ class SongsByPop extends Component {
             {this.displayPosted()}
           </div>
         ) : (
-          <h4>Fav Content</h4>
+          <div>
+            <h4>Fav Content</h4>
+            {this.displayFavorited()}
+          </div>
         )}
       </div>
     );
