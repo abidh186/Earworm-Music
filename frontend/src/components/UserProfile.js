@@ -16,7 +16,8 @@ class SongsByPop extends Component {
     posted: true,
     title: "",
     genre: "",
-    img_url: ""
+    img_url: "",
+    err_warning: false
   };
 
   clickPosted = () => {
@@ -105,35 +106,47 @@ class SongsByPop extends Component {
     });
   };
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault();
     let { currentUser, genres } = this.props;
-    let { title, genre, img_url } = this.state;
+    let { title, genre, img_url, err_warning } = this.state;
 
     let filteredItem = genres.filter(genreItem => {
       return genreItem.genre_name === genre;
     });
-    await axios
+    // debugger;
+    axios
       .post("/songs", {
-        title: this.state.title,
+        title: title,
         genre_id: filteredItem["0"].id,
         user_id: currentUser.id,
         img_url: img_url
       })
       .then(() => {
         this.props.getAllSongs();
+        this.props.getAllGenres();
+      })
+      .then(() => {
+        this.setState({
+          title: "",
+          img_url: "",
+          genre: "",
+          err_warning: false
+        });
+      })
+      .catch(err => {
+        if (err.response.status === 500) {
+          console.log(err);
+          this.setState({
+            err_warning: true
+          });
+        }
       });
-
-    await this.setState({
-      title: "",
-      genre: "",
-      img_url: ""
-    });
   };
 
   render() {
     let userId = parseInt(this.props.match.params.id);
-    let { posted } = this.state;
+    let { posted, title, genre, img_url, err_warning } = this.state;
     let { users, songs, favorites, currentUser, genres } = this.props;
     if (!Object.values(users).length) return null;
     if (!songs.length || !favorites.length || !genres.length) return null;
@@ -157,6 +170,9 @@ class SongsByPop extends Component {
             <h4>Posted Content</h4>
             {userId === currentUser.id ? (
               <div>
+                {err_warning ? (
+                  <p>Please make sure it's a unique title</p>
+                ) : null}
                 <form onSubmit={this.handleSubmit}>
                   <input
                     required
@@ -164,6 +180,7 @@ class SongsByPop extends Component {
                     name="title"
                     placeholder="Song Title"
                     type="text"
+                    value={title}
                   />
                   <input
                     required
@@ -171,9 +188,16 @@ class SongsByPop extends Component {
                     name="img_url"
                     placeholder="Image URL"
                     type="text"
+                    value={img_url}
                   />
                   <label>Pick Genre-></label>
-                  <select name="genre" onChange={this.handleChange}>
+                  <select
+                    required
+                    value={genre}
+                    name="genre"
+                    onChange={this.handleChange}
+                  >
+                    <option>{""}</option>
                     {this.listGenres()}
                   </select>
                   <input type="submit" value="Add Song" />

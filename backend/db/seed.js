@@ -9,6 +9,13 @@ for (let i = 0; i < 5; i++) {
   genres.push(str);
 }
 
+let users = [];
+for (let i = 0; i < 10; i++) {
+  let username = faker.internet.userName();
+  let str = `('${username}')`;
+  users.push(str);
+}
+
 let songs = [];
 for (let i = 0; i < 15; i++) {
   let title = faker.lorem.words();
@@ -36,6 +43,7 @@ for (let i = 0; i < 20; i++) {
   comments.push(str);
 }
 
+users = users.join(", ");
 genres = genres.join(", ");
 songs = songs.join(", ");
 favorites = favorites.join(", ");
@@ -43,19 +51,21 @@ comments = comments.join(", ");
 
 db.none("INSERT INTO genres(genre_name) VALUES " + genres + ";")
   .then(() => {
-    db.none(
-      "INSERT INTO songs(title, genre_id, user_id, img_url) VALUES " +
-        songs +
-        ";"
-    ).then(() => {
+    db.none("INSERT INTO users(username) VALUES " + users + ";").then(() => {
       db.none(
-        "INSERT INTO favorites(user_id, song_id) VALUES " + favorites + ";"
+        "INSERT INTO songs(title, genre_id, user_id, img_url) VALUES " +
+          songs +
+          ";"
       ).then(() => {
         db.none(
-          "INSERT INTO comments(comment_body, user_id, song_id) VALUES " +
-            comments +
-            ";"
-        );
+          "INSERT INTO favorites(user_id, song_id) VALUES " + favorites + ";"
+        ).then(() => {
+          db.none(
+            "INSERT INTO comments(comment_body, user_id, song_id) VALUES " +
+              comments +
+              ";"
+          );
+        });
       });
     });
   })
