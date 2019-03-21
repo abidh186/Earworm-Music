@@ -86,14 +86,14 @@ class AllSongs extends Component {
     return (
       <div className="all-songs-container">
         <div className="search-form-container">
-          <p id="search-label">
+          <h2 id="search-label">
             Search By Title
             {clicked ? (
               <span className="searched"> (Showing searched)</span>
             ) : (
               <span className="all"> (Showing all)</span>
             )}
-          </p>
+          </h2>
           <form className="search-form" onSubmit={this.handleSubmit}>
             <input
               required
@@ -101,6 +101,7 @@ class AllSongs extends Component {
               name="searchInput"
               type="text"
               className="title-search-input"
+              placeholder="Search Songs ..."
             />
             <input
               className="title-search-button"

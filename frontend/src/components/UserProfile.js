@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
 import axios from "axios";
-import "../styles/profile.css";
+import "../styles/UserProfile.css";
 
 class SongsByPop extends Component {
   componentDidMount = () => {
@@ -17,7 +17,8 @@ class SongsByPop extends Component {
     title: "",
     genre: "",
     img_url: "",
-    err_warning: false
+    err_warning: false,
+    emptyGenre: false
   };
 
   clickPosted = () => {
@@ -108,11 +109,24 @@ class SongsByPop extends Component {
     });
   };
 
+  handleSelect = e => {
+    this.setState({
+      genre: e.target.value,
+      emptyGenre: false
+    });
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     let { currentUser, genres } = this.props;
-    let { title, genre, img_url } = this.state;
-
+    let { title, genre, img_url, emptyGenre } = this.state;
+    if (genre === "Pick a Genre" || genre === "") {
+      this.setState({
+        emptyGenre: true,
+        err_warning: false
+      });
+      return;
+    }
     let filteredItem = genres.filter(genreItem => {
       return genreItem.genre_name === genre;
     });
@@ -132,7 +146,8 @@ class SongsByPop extends Component {
           title: "",
           img_url: "",
           genre: "",
-          err_warning: false
+          err_warning: false,
+          emptyGenre: false
         });
       })
       .catch(err => {
@@ -147,35 +162,41 @@ class SongsByPop extends Component {
 
   render() {
     let userId = parseInt(this.props.match.params.id);
-    let { posted, title, genre, img_url, err_warning } = this.state;
+    let { posted, title, genre, img_url, err_warning, emptyGenre } = this.state;
     let { users, songs, favorites, currentUser, genres } = this.props;
     if (!Object.values(users).length) return null;
     if (!songs.length || !favorites.length || !genres.length) return null;
     return (
       <div className="user-profile-container">
-        <button
-          className={posted ? "selected" : "unselected"}
-          onClick={this.clickPosted}
-        >
-          Posted
-        </button>
-        <button
-          className={posted ? "unselected" : "selected"}
-          onClick={this.clickFavorited}
-        >
-          Favorited
-        </button>
         <h2 className="username">{users[userId].username}</h2>
+        <div className="toggle-buttons">
+          <button
+            className={posted ? "selected" : "unselected"}
+            onClick={this.clickPosted}
+          >
+            Posted
+          </button>
+          <button
+            className={posted ? "unselected" : "selected"}
+            onClick={this.clickFavorited}
+          >
+            Favorited
+          </button>
+        </div>
         {posted ? (
           <>
             {userId === currentUser.id ? (
-              <div className="post-song-form">
+              <div className="post-song-container">
                 {err_warning ? (
                   <p className="post-song-err">
-                    Please make sure it's a unique title
+                    Please Make Sure it's a Unique Title.
                   </p>
                 ) : null}
-                <form onSubmit={this.handleSubmit}>
+                {emptyGenre ? (
+                  <p className="empty-genre-err">Please Select a Genre.</p>
+                ) : null}
+                <p id="add-song-label">Add a New Song</p>
+                <form className="post-song-form" onSubmit={this.handleSubmit}>
                   <input
                     required
                     onChange={this.handleChange}
@@ -194,14 +215,16 @@ class SongsByPop extends Component {
                     value={img_url}
                     className="song-url-input"
                   />
-                  <label>Pick Genre-></label>
                   <select
                     required
                     value={genre}
                     name="genre"
-                    onChange={this.handleChange}
+                    className="song-genre-input"
+                    onChange={this.handleSelect}
                   >
-                    <option>{""}</option>
+                    <option id="selected" selected>
+                      Pick a Genre
+                    </option>
                     {this.listGenres()}
                   </select>
                   <input

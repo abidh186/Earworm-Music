@@ -97,15 +97,15 @@ class SongListItem extends React.Component {
             <p className="song-title">{title}</p>
             <div className="favorite-stuff">
               <p className="favorite-count">
-                {numberOfFavs} <i class="fas fa-heart" />
+                {numberOfFavs} <i className="fas fa-heart" />
               </p>
               {isFav ? (
                 <span className="favorite-button" onClick={this.unfavorite}>
-                  <i class="fas fa-minus" />
+                  <i className="fas fa-minus" />
                 </span>
               ) : (
                 <span className="unfavorite-button" onClick={this.favorite}>
-                  <i class="fas fa-plus" />
+                  <i className="fas fa-plus" />
                 </span>
               )}
             </div>

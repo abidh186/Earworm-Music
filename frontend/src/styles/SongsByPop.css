@@ -1,0 +1,11 @@
+.by-pop-container {
+  width: 80%;
+  padding-top: 15px;
+  margin: auto;
+}
+
+.by-pop-container h2 {
+  font-family: Fredericka the Great;
+  font-weight: normal;
+  color: #5a5757;
+}

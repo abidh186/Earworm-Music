@@ -71,7 +71,7 @@ class SongsByGenre extends Component {
     if (!Object.values(users).length) return null;
     return (
       <div className="by-genre-container">
-        <h1>Songs By Genre</h1>
+        <h2>Songs By Genre</h2>
         <select className="genre-dropdown" onChange={this.changeHandler}>
           <option> </option>
           {this.listGenres()}

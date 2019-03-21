@@ -1,6 +1,11 @@
+.by-genre-container {
+  width: 80%;
+  padding-top: 15px;
+  margin: auto;
+}
+
 .genre-dropdown {
-  /* height: 30px; */
-  font-size: 25px;
+  font-size: 20px;
   font-family: Noto Sans JP;
   outline: none;
   border: none;
@@ -8,9 +13,10 @@
   margin-bottom: 20px;
 }
 
-.genre-dropdown > * {
-  background-color: #000;
-  color: #fff;
+.by-genre-container h2 {
+  font-family: Fredericka the Great;
+  font-weight: normal;
+  color: #5a5757;
 }
 
 /*

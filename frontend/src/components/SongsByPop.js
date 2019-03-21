@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
-
+import "../styles/SongsByPop.css";
 class SongsByPop extends Component {
   componentDidMount = () => {
     this.props.getAllSongs();
@@ -48,7 +48,7 @@ class SongsByPop extends Component {
     if (!Object.values(users).length) return null;
     return (
       <div className="by-pop-container">
-        <h1>Songs By Pop page</h1>
+        <h2>Songs By Pop page</h2>
         <div className="song-list">{this.displaySongList()}</div>
       </div>
     );

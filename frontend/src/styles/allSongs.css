@@ -10,13 +10,15 @@
 
 .search-form input[type="text"] {
   width: 50%;
-  padding: 10px 20px;
+  padding: 6px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   outline: none;
+  font-family: Crimson Text;
+  font-size: 15px;
 }
 
 .search-form input[type="submit"] {
@@ -33,11 +35,10 @@
 }
 
 #search-label {
-  font-family: Crimson Text;
-  font-weight: 600;
-  font-size: 22px;
   margin-bottom: 0;
-  color: #313233;
+  font-family: Fredericka the Great;
+  font-weight: normal;
+  color: #5a5757;
 }
 
 .all,

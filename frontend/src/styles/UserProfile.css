@@ -1,0 +1,97 @@
+.user-profile-container {
+  width: 80%;
+  padding-top: 15px;
+  margin: auto;
+}
+
+.username {
+  font-family: Fredericka the Great;
+  font-weight: normal;
+  color: #5a5757;
+}
+
+.toggle-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: auto 100px;
+}
+
+.toggle-buttons > * {
+  color: black;
+  padding: 5px 20px;
+  margin: 8px 4px;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  font-family: Alegreya;
+  font-size: 17px;
+  outline: none;
+}
+
+.selected {
+  background-color: #00f281;
+  color: #621389;
+}
+.unselected {
+  background-color: lightgrey;
+}
+
+.post-song-err,
+.empty-genre-err {
+  font-family: Crimson Text;
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: red;
+  margin: auto;
+  font-weight: bold;
+}
+
+#add-song-label {
+  font-family: Alegreya;
+  font-size: 20px;
+  margin: 5px auto;
+  color: #621389;
+}
+
+.post-song-form {
+  display: inline-grid;
+}
+
+.post-song-button {
+  width: 60%;
+  margin: 4px auto;
+  color: white;
+  padding: 2px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Alegreya;
+  background-color: #621389;
+  font-size: 17px;
+  outline: none;
+}
+
+.song-title-input,
+.song-url-input {
+  padding: 5px 10px;
+  margin: 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Crimson Text;
+  font-size: 15px;
+}
+.song-genre-input {
+  font-size: 13px;
+  font-family: Noto Sans JP;
+  outline: none;
+  border: none;
+  color: black;
+  border: 1px solid #babcbc;
+}
+
+#selected {
+  color: red;
+}
