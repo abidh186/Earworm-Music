@@ -4,7 +4,7 @@ import img from "../images/img.jpeg";
 const Home = () => {
   return (
     <div className="landing-page">
-      <img src={img} />
+      <img src={img} alt="Logo" />
     </div>
   );
 };

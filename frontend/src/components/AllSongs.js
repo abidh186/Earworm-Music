@@ -37,7 +37,8 @@ class AllSongs extends Component {
     event.preventDefault();
     let { searchInput } = this.state;
     this.setState({
-      searchWith: searchInput
+      searchWith: searchInput,
+      searchInput: ""
     });
   };
 
@@ -64,17 +65,12 @@ class AllSongs extends Component {
           img={song.img_url}
           title={song.title}
           numberOfFavs={this.getFavs(song.id)}
+          userId={song.user_id}
         />
       );
     });
     return <div className="song-list">{songList}</div>;
   };
-
-  // {clicked ? (
-  //   <span className="searched"> (Showing searched)</span>
-  // ) : (
-  //   <span className="all"> (Showing all)</span>
-  // )}
 
   render() {
     let { comments, users, songs, currentUser, favorites } = this.props;

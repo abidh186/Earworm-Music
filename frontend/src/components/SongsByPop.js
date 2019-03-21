@@ -33,6 +33,7 @@ class SongsByPop extends Component {
           img={song.img_url}
           title={song.title}
           numberOfFavs={this.getFavs(song.id)}
+          userId={song.user_id}
         />
       );
     });

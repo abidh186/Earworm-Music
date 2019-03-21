@@ -12,8 +12,8 @@
 
 .toggle-buttons {
   display: flex;
-  justify-content: space-between;
-  margin: auto 300px;
+  justify-content: space-around;
+  margin: auto 100px;
 }
 
 .toggle-buttons > * {
@@ -24,9 +24,11 @@
 
 .selected-heart {
   color: red;
+  border-bottom: 4px solid #621389;
 }
 .selected-pen {
   color: #00f281;
+  border-bottom: 4px solid #621389;
 }
 .unselected {
   color: grey;

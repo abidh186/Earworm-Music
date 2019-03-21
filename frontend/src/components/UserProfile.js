@@ -68,6 +68,7 @@ class SongsByPop extends Component {
           img={song.img_url}
           title={song.title}
           numberOfFavs={this.getFavs(song.id)}
+          userId={song.user_id}
         />
       );
     });
@@ -87,6 +88,7 @@ class SongsByPop extends Component {
           img={song.img_url}
           title={song.title}
           numberOfFavs={this.getFavs(song.id)}
+          userId={song.user_id}
         />
       );
     });
@@ -119,7 +121,7 @@ class SongsByPop extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let { currentUser, genres } = this.props;
-    let { title, genre, img_url, emptyGenre } = this.state;
+    let { title, genre, img_url } = this.state;
     if (genre === "Pick a Genre" || genre === "") {
       this.setState({
         emptyGenre: true,
@@ -216,9 +218,7 @@ class SongsByPop extends Component {
                     className="song-genre-input"
                     onChange={this.handleSelect}
                   >
-                    <option id="selected" selected>
-                      Pick a Genre
-                    </option>
+                    <option id="selected">Pick a Genre</option>
                     {this.listGenres()}
                   </select>
                   <input

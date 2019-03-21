@@ -86,12 +86,19 @@ class SongListItem extends React.Component {
   };
 
   render() {
-    let { img, title, numberOfFavs, songId } = this.props;
+    let { img, title, numberOfFavs, songId, userId } = this.props;
+    let { users } = this.props;
     if (!this.props.comments.length) return null;
     let isFav = this.isFavOfCurrentUser(songId);
     return (
       <div className="song-list-item">
-        <img className="song-img" src={img} alt="" />
+        <div className="img-container">
+          <img className="song-img" src={img} alt="" />
+          <p id="posted-by-tag">Posted By</p>
+          <NavLink className="username-link" to={`/users/${userId}`}>
+            {users[userId].username}
+          </NavLink>
+        </div>
         <div className="song-content">
           <div className="song-info">
             <p className="song-title">{title}</p>

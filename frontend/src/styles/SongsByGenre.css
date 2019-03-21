@@ -3,16 +3,18 @@
   padding-top: 15px;
   margin: auto;
 }
+.by-genre-container h2 {
+  margin-bottom: 5px;
+}
 
 .genre-dropdown {
   height: 35px;
   font-size: 20px;
   font-family: Noto Sans JP;
   outline: none;
-  border: none;
-  background-color: #eeebeb;
+  border: 1px solid #ccc;
+  background-color: white;
   margin: auto;
-  /* margin-bottom: 20px; */
 }
 
 .by-genre-container h2 {
@@ -37,8 +39,3 @@
   font-size: 16px;
   outline: none;
 }
-
-/*
-
-|Alegreya|Crimson+Text:400,600
-|Fredericka+the+Great|Noto+Sans+JP|Open+Sans+Condensed:300,700" */

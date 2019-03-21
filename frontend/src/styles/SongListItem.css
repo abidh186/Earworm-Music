@@ -6,11 +6,15 @@
   padding: 20px;
 }
 
+.img-container {
+}
+
 .song-img {
   width: 100px;
   height: 100px;
-  border-radius: 30px;
+  border-radius: 12px;
   margin-top: 25px;
+  object-fit: cover;
 }
 
 .song-info {
@@ -53,11 +57,17 @@
 .username-link {
   margin: auto;
   text-decoration: none;
-  color: black;
+  color: #621389;
   font-family: Fredericka the Great;
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
   border-bottom: 1px solid #d1d1d1;
+}
+
+#posted-by-tag {
+  font-size: 14px;
+  margin-bottom: 3px;
+  font-family: Crimson Text;
 }
 
 .song-title {
