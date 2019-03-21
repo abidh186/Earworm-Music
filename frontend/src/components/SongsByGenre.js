@@ -11,6 +11,7 @@ class SongsByGenre extends Component {
   };
 
   state = {
+    picked: "",
     chosenGenre: ""
   };
 
@@ -60,7 +61,15 @@ class SongsByGenre extends Component {
 
   changeHandler = e => {
     this.setState({
-      chosenGenre: e.target.value
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleSubmit = event => {
+    let { picked } = this.state;
+    event.preventDefault();
+    this.setState({
+      chosenGenre: picked
     });
   };
 
@@ -72,10 +81,19 @@ class SongsByGenre extends Component {
     return (
       <div className="by-genre-container">
         <h2>Songs By Genre</h2>
-        <select className="genre-dropdown" onChange={this.changeHandler}>
-          <option> </option>
-          {this.listGenres()}
-        </select>
+        <div className="select-genre-container">
+          <select
+            name="picked"
+            className="genre-dropdown"
+            onChange={this.changeHandler}
+          >
+            <option />
+            {this.listGenres()}
+          </select>
+          <button className="genre-submit" onClick={this.handleSubmit}>
+            Submit
+          </button>
+        </div>
         <div className="song-list">{this.displaySongList()}</div>
       </div>
     );

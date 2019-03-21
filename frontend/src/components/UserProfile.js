@@ -170,18 +170,12 @@ class SongsByPop extends Component {
       <div className="user-profile-container">
         <h2 className="username">{users[userId].username}</h2>
         <div className="toggle-buttons">
-          <button
-            className={posted ? "selected" : "unselected"}
-            onClick={this.clickPosted}
-          >
-            Posted
-          </button>
-          <button
-            className={posted ? "unselected" : "selected"}
-            onClick={this.clickFavorited}
-          >
-            Favorited
-          </button>
+          <div className={posted ? "selected-pen" : "unselected"}>
+            <i onClick={this.clickPosted} className="fas fa-pen" />
+          </div>
+          <div className={posted ? "unselected" : "selected-heart"}>
+            <i onClick={this.clickFavorited} className="fas fa-heart" />
+          </div>
         </div>
         {posted ? (
           <>

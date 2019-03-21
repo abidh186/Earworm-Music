@@ -12,28 +12,24 @@
 
 .toggle-buttons {
   display: flex;
-  justify-content: space-around;
-  margin: auto 100px;
+  justify-content: space-between;
+  margin: auto 300px;
 }
 
 .toggle-buttons > * {
-  color: black;
-  padding: 5px 20px;
-  margin: 8px 4px;
-  border: none;
-  border-radius: 1px;
   cursor: pointer;
-  font-family: Alegreya;
-  font-size: 17px;
+  font-size: 40px;
   outline: none;
 }
 
-.selected {
-  background-color: #00f281;
-  color: #621389;
+.selected-heart {
+  color: red;
+}
+.selected-pen {
+  color: #00f281;
 }
 .unselected {
-  background-color: lightgrey;
+  color: grey;
 }
 
 .post-song-err,

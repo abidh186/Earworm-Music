@@ -9,27 +9,24 @@
 .song-img {
   width: 100px;
   height: 100px;
-  border-radius: 10px;
+  border-radius: 30px;
+  margin-top: 25px;
 }
 
 .song-info {
   width: 500px;
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid grey; */
   padding: 5px;
 }
 
 .comments-container {
   width: 470px;
-  /* border: 1px solid grey; */
   border-bottom: none;
-  /* border-top: none; */
   margin-left: 40px;
 }
 
 .comment-text-container {
-  /* border-bottom: 1px solid grey; */
   display: flex;
   justify-content: space-between;
   margin: auto;
@@ -42,11 +39,9 @@
   text-align: left;
   font-family: Crimson Text;
   font-size: 17px;
-  /* font-weight: 400; */
 }
 
 .comment-text-container a {
-  /* padding: 10px; */
   margin-right: 0;
 }
 
@@ -84,7 +79,7 @@
   font-family: Noto Sans JP;
 }
 
-.fa-heart {
+.favorite-count .fa-heart {
   background-color: white;
   color: red;
   padding: 0;

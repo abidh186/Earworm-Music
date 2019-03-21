@@ -1,3 +1,12 @@
+#empty-search-err {
+  font-family: Crimson Text;
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: red;
+  margin: auto;
+  font-weight: bold;
+}
+
 .all-songs-container {
   width: 80%;
   padding-top: 15px;

@@ -5,18 +5,37 @@
 }
 
 .genre-dropdown {
+  height: 35px;
   font-size: 20px;
   font-family: Noto Sans JP;
   outline: none;
   border: none;
   background-color: #eeebeb;
-  margin-bottom: 20px;
+  margin: auto;
+  /* margin-bottom: 20px; */
 }
 
 .by-genre-container h2 {
   font-family: Fredericka the Great;
   font-weight: normal;
   color: #5a5757;
+}
+
+.select-genre-container {
+  display: inline-flex;
+}
+
+.genre-submit {
+  background-color: #621389;
+  color: white;
+  padding: 5px 20px;
+  margin: 8px 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Alegreya;
+  font-size: 16px;
+  outline: none;
 }
 
 /*
