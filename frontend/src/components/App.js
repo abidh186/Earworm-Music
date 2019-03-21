@@ -13,13 +13,25 @@ class App extends Component {
     return (
       <div className="entire-app">
         <div className="navbar-container">
-          <h1 className="logo">Earworm Music</h1>
+          <NavLink className="nav-header" to="/">
+            <h1 className="logo">Earworm Music</h1>
+          </NavLink>
           <nav className="navbar">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/songs">All Songs</NavLink>
-            <NavLink to="/songs/byGenre">By Genre</NavLink>
-            <NavLink to="/songs/byPop">By Popularity</NavLink>
-            <NavLink to={`/users/1`}>My Profile</NavLink>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+            <NavLink exact to="/songs">
+              All Songs
+            </NavLink>
+            <NavLink exact to="/songs/byGenre">
+              By Genre
+            </NavLink>
+            <NavLink exact to="/songs/byPop">
+              By Popularity
+            </NavLink>
+            <NavLink exact to={`/users/1`}>
+              My Profile
+            </NavLink>
           </nav>
         </div>
         <Switch>

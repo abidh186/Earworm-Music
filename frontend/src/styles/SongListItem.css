@@ -1,0 +1,138 @@
+.song-list-item {
+  display: inline-flex;
+}
+
+.song-list-item > * {
+  padding: 20px;
+}
+
+.song-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.song-info {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid grey; */
+  padding: 5px;
+}
+
+.comments-container {
+  width: 470px;
+  /* border: 1px solid grey; */
+  border-bottom: none;
+  /* border-top: none; */
+  margin-left: 40px;
+}
+
+.comment-text-container {
+  /* border-bottom: 1px solid grey; */
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 5px;
+}
+
+.comment-text-container p {
+  padding: 0 10px;
+  margin-left: 0;
+  text-align: left;
+  font-family: Crimson Text;
+  font-size: 17px;
+  /* font-weight: 400; */
+}
+
+.comment-text-container a {
+  /* padding: 10px; */
+  margin-right: 0;
+}
+
+.comment-text-container > * {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.username-link {
+  margin: auto;
+  text-decoration: none;
+  color: black;
+  font-family: Fredericka the Great;
+  font-size: 13px;
+  font-style: italic;
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.song-title {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.favorite-stuff {
+  display: flex;
+  justify-content: space-between;
+}
+
+.favorite-stuff > * {
+  padding: 10px;
+}
+
+.favorite-count {
+  font-family: Noto Sans JP;
+}
+
+.fa-heart {
+  background-color: white;
+  color: red;
+  padding: 0;
+  margin: auto;
+  font-size: 22px;
+  outline: none;
+}
+
+.favorite-button,
+.unfavorite-button {
+  background-color: white;
+  color: black;
+  padding: 0;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  outline: none;
+}
+
+.comment-form {
+  margin-top: 25px;
+  width: 470px;
+  margin-left: 45px;
+}
+
+.comment-input {
+  width: 70%;
+  padding: 5px 10px;
+  margin: 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Crimson Text;
+  font-size: 15px;
+}
+
+.comment-button {
+  background-color: #621389;
+  color: white;
+  padding: 5px 10px;
+  margin: 0px 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Alegreya;
+  font-size: 15px;
+  outline: none;
+}

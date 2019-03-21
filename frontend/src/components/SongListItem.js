@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import "../styles/SongListItem.css";
 
 class SongListItem extends React.Component {
   state = {
@@ -69,14 +70,16 @@ class SongListItem extends React.Component {
     });
     let filtered = commentList.map(comment => {
       return (
-        <p className="comment-text" key={comment.id}>
-          {comment.comment_body} <span className="comment-by">by</span>{" "}
-          <NavLink className="abc" exact to={`/users/${comment.user_id}`}>
-            <span className="username-link">
-              {users[comment.user_id].username}
-            </span>
+        <div className="comment-text-container" key={comment.id}>
+          <p>{comment.comment_body}</p>
+          <NavLink
+            className="username-link"
+            exact
+            to={`/users/${comment.user_id}`}
+          >
+            {users[comment.user_id].username}
           </NavLink>
-        </p>
+        </div>
       );
     });
     return filtered;
@@ -88,32 +91,45 @@ class SongListItem extends React.Component {
     let isFav = this.isFavOfCurrentUser(songId);
     return (
       <div className="song-list-item">
-        <img src={img} alt="" />
-        {isFav ? (
-          <button className="favorite-button" onClick={this.unfavorite}>
-            Unfavorite
-          </button>
-        ) : (
-          <button className="unfavorite-button" onClick={this.favorite}>
-            Favorite
-          </button>
-        )}
-        <h4 className="song-title">{title}</h4>
-        {numberOfFavs ? (
-          <p className="favorite-count">{numberOfFavs} favorited</p>
-        ) : null}
-        <div className="comments-container">{this.getSongComments(songId)}</div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            className="comment-input"
-            onChange={this.handleChange}
-            type="text"
-            required
-            value={this.state.commentBody}
-            name="commentBody"
-          />
-          <input className="comment-button" type="submit" value="add comment" />
-        </form>
+        <img className="song-img" src={img} alt="" />
+        <div className="song-content">
+          <div className="song-info">
+            <p className="song-title">{title}</p>
+            <div className="favorite-stuff">
+              <p className="favorite-count">
+                {numberOfFavs} <i class="fas fa-heart" />
+              </p>
+              {isFav ? (
+                <span className="favorite-button" onClick={this.unfavorite}>
+                  <i class="fas fa-minus" />
+                </span>
+              ) : (
+                <span className="unfavorite-button" onClick={this.favorite}>
+                  <i class="fas fa-plus" />
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="comments-container">
+            {this.getSongComments(songId)}
+          </div>
+          <form className="comment-form" onSubmit={this.handleSubmit}>
+            <input
+              className="comment-input"
+              onChange={this.handleChange}
+              type="text"
+              required
+              value={this.state.commentBody}
+              name="commentBody"
+              placeholder="Enter Comment..."
+            />
+            <input
+              className="comment-button"
+              type="submit"
+              value="add comment"
+            />
+          </form>
+        </div>
       </div>
     );
   }

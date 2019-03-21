@@ -1,0 +1,19 @@
+.genre-dropdown {
+  /* height: 30px; */
+  font-size: 25px;
+  font-family: Noto Sans JP;
+  outline: none;
+  border: none;
+  background-color: #eeebeb;
+  margin-bottom: 20px;
+}
+
+.genre-dropdown > * {
+  background-color: #000;
+  color: #fff;
+}
+
+/*
+
+|Alegreya|Crimson+Text:400,600
+|Fredericka+the+Great|Noto+Sans+JP|Open+Sans+Condensed:300,700" */

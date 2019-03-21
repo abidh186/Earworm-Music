@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
-
+import "../styles/SongsByGenre.css";
 class SongsByGenre extends Component {
   componentDidMount = () => {
     this.props.getAllGenres();
@@ -72,7 +72,7 @@ class SongsByGenre extends Component {
     return (
       <div className="by-genre-container">
         <h1>Songs By Genre</h1>
-        <select onChange={this.changeHandler}>
+        <select className="genre-dropdown" onChange={this.changeHandler}>
           <option> </option>
           {this.listGenres()}
         </select>

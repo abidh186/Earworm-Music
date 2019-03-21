@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
-import "../styles/allSongs.css";
+import "../styles/AllSongs.css";
 
 class AllSongs extends Component {
   state = {
@@ -85,25 +85,30 @@ class AllSongs extends Component {
     let filtered = this.filterSongs(songs);
     return (
       <div className="all-songs-container">
-        {clicked ? (
-          <p className="showing-searched">Showing searched</p>
-        ) : (
-          <p className="showing-all">showing all</p>
-        )}
-        <form onSubmit={this.handleSubmit}>
-          <input
-            required
-            onChange={this.handleChange}
-            name="searchInput"
-            type="text"
-            className="title-search-input"
-          />
-          <input
-            className="title-search-button"
-            type="submit"
-            value="Search By Title"
-          />
-        </form>
+        <div className="search-form-container">
+          <p id="search-label">
+            Search By Title
+            {clicked ? (
+              <span className="searched"> (Showing searched)</span>
+            ) : (
+              <span className="all"> (Showing all)</span>
+            )}
+          </p>
+          <form className="search-form" onSubmit={this.handleSubmit}>
+            <input
+              required
+              onChange={this.handleChange}
+              name="searchInput"
+              type="text"
+              className="title-search-input"
+            />
+            <input
+              className="title-search-button"
+              type="submit"
+              value="Search"
+            />
+          </form>
+        </div>
         {clicked ? this.displaySongList(filtered) : this.displaySongList(songs)}
       </div>
     );
