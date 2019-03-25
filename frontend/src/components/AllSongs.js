@@ -1,6 +1,10 @@
+//Heads up, this didn't compile because your allSongs.css was being called Allsongs.css
+
+
+
 import React, { Component } from "react";
 import SongListItemContainer from "./SongListItemContainer";
-import "../styles/AllSongs.css";
+import "../styles/allSongs.css";
 
 class AllSongs extends Component {
   componentDidMount = () => {

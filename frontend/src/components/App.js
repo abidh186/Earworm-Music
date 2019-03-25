@@ -1,3 +1,16 @@
+// I still want that NAVBAR IN IT'S OWN COMPONENT!
+// You're also still duplicating a LOT of calls. This is hurting
+// the performance of your app.
+//Overall this test looks great. Really fantastic job.
+// A super pleasent user expereience. No bugs that
+// I"m finding.
+// Styling looks great. Nice favicon touch.
+// Side note, with projects remove your logger from
+// redux at end so that it's doesn't show in the console
+// during production.
+
+// Okay, good job!
+
 import React, { Component } from "react";
 import { NavLink, Switch, Route } from "react-router-dom";
 import "../styles/App.css";
